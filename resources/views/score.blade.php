@@ -8,7 +8,7 @@
                 <div class="panel-heading">Score</div>
 
                 <div class="panel-body">
-                    <ul>
+                    <ul>                    
                     @foreach ($reburic as $key => $score)
                     <li>
                         {{$key}} : {{$score}}
