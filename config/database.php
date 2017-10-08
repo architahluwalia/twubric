@@ -1,5 +1,11 @@
 <?php
-
+if (env('DB') == 'clearDB') {
+    $url = parse_url(env("CLEARDB_DATABASE_URL"));
+    $host = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $database = substr($url["path"], 1);
+}
 return [
 
     /*
@@ -77,7 +83,16 @@ return [
             'prefix' => '',
             'schema' => 'public',
         ],
-
+        'clearDB' => array(
+            'driver'    => 'mysql',
+            'host'      => env('DB') == 'clearDB'?$host:'',
+            'database'  => env('DB') == 'clearDB'?$database:'',
+            'username'  => env('DB') == 'clearDB'?$username:'',
+            'password'  => env('DB') == 'clearDB'?$password:'',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+        ),
     ],
 
     /*
